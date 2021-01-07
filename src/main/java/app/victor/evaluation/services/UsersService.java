@@ -1,6 +1,7 @@
 package app.victor.evaluation.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.annotation.Resource;
 
@@ -17,6 +18,10 @@ public class UsersService {
 	
 	public List<Users> findAll() {
 		return repository.findAll();
+	}
+	
+	public  Optional<Users> getById(Long id) {
+		return repository.findById(id);
 	}
 
 }
