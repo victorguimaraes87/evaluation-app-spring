@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import app.victor.evaluation.entity.Users;
 import app.victor.evaluation.services.UsersService;
 
@@ -33,5 +34,12 @@ public class UserResource {
 	public Optional<Users> getById(@PathVariable Long id) {
 		return userService.getById(id);
 	}
+	
+	@PutMapping(value="/{id}")
+	public ResponseEntity<Users> update(@PathVariable Long id,@RequestBody Users obj) {
+		obj = userService.update(id, obj);
+		return ResponseEntity.ok().body(obj);		
+	}
+	
 
 }

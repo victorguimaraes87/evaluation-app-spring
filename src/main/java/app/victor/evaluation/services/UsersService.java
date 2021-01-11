@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Component;
 
+
 import app.victor.evaluation.entity.Users;
 import app.victor.evaluation.repositories.UsersRepository;
 
@@ -23,5 +24,20 @@ public class UsersService {
 	public  Optional<Users> getById(Long id) {
 		return repository.findById(id);
 	}
+	
+	public Users update(Long id, Users obj) {
+		Users entity = repository.getOne(id);
+		updateData(entity, obj);
+		return repository.save(entity);
+	}
+	
+	private void updateData(Users entity, Users obj) {
+	
+		entity.setName(obj.getName());
+		entity.setLogin(obj.getLogin());
+		entity.setPassword(obj.getPassword());
+		
+	}
+
 
 }
