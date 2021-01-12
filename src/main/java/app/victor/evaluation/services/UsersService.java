@@ -38,6 +38,10 @@ public class UsersService {
 		entity.setPassword(obj.getPassword());
 		
 	}
+	
+	public void delete(Long id) {
+		repository.deleteById(id);
+	}
 
 
 }
