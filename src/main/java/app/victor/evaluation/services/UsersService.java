@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import javax.annotation.Resource;
 
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 
@@ -44,6 +46,8 @@ public class UsersService {
 	}
 	
 	public Users insert(Users obj) {
+		PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+		obj.setPassword(passwordEncoder.encode(obj.getPassword()));
 		return repository.save(obj); 
 	}
 
